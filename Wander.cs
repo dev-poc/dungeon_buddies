@@ -17,17 +17,21 @@ public class Wander : Action
         zLoc=gameObject.transform.position.z;
 
         transform.Rotate(0,  Random.Range(-deviateRange,deviateRange),0,Space.World);
-        moveTarget=transform.position + Vector3.forward * Random.Range((wanderDistance/4),wanderDistance);
+        moveTarget=transform.position + Vector3.forward * Random.Range(0,wanderDistance);
 
+       // Debug.Log(moveTarget+" - - "+transform.position);
     }
 
 
     public override TaskStatus OnUpdate()
     {
+      //  Vector3 direction = (moveTarget - transform.position).normalized;
+      //  transform.LookAt(moveTarget.transform);
 
-       // return TaskStatus.Success;
+        Debug.Log(moveTarget+" - - "+transform.position);
+        return TaskStatus.Success;
 
 
-        return TaskStatus.Failure;
+       // return TaskStatus.Failure;
     }
 }
