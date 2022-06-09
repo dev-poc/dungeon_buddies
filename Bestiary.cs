@@ -25,10 +25,10 @@ public class Bestiary : ScriptableObject
         [Tooltip("How far can it see?")]                [Range(1f,20f)]         public float viewDist=-1f;
         [Tooltip("View range from 12 o'clock."+
             "0=Blind, 180=360`")]                       [Range(10f,180f)]       public float viewRange=-1f;
-        
-        
-        
-          
+
+
+
+
 
 
     //behaviourals
