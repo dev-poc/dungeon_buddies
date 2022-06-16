@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class aura : MonoBehaviour
 {
-    Bestiary parentBestiary;
-    Statulator parentStatulator;
-    DynamicStats parentDynamicStats;
+    Bestiary otherBestiary,parentBestiary;
+    Statulator otherStatulator,parentStatulator;
+   
+    DynamicStats otherDynamicStats,parentDynamicStats;
+    Behavioural parentBehavioural,otherBehavioural;
+
     public GameObject[] inAura;
     
     private float auraSize=1;
@@ -16,6 +19,7 @@ public class aura : MonoBehaviour
         //parentBestiary=gameObject.GetComponentInParent<Bestiary>();
         parentStatulator=gameObject.GetComponentInParent<Statulator>();
         parentDynamicStats=gameObject.GetComponentInParent<DynamicStats>();
+        parentBehavioural=gameObject.GetComponentInParent<Behavioural>();
 
         ResizeAura();
         gameObject.name="aura";
@@ -25,7 +29,7 @@ public class aura : MonoBehaviour
     {
         if (parentStatulator.sizeModifier==0)
         {
-            Debug.Log("Aura forcing sizeModifier for parent");
+            //Debug.Log("Aura forcing sizeModifier for parent");
             parentStatulator.sizeModifier=Random.Range((float)parentStatulator.bestiary.size,(float)parentStatulator.bestiary.size*1.9f);
         }
         auraSize=parentStatulator.bestiary.viewDist*parentStatulator.sizeModifier;
@@ -45,10 +49,21 @@ public class aura : MonoBehaviour
     }
     void OnTriggerEnter(Collider other) 
     {
-        Debug.Log(other.transform.parent.name +" Entered Aura of "+parentStatulator.name);
-        parentStatulator.otherNear=true;
-        parentDynamicStats.nearbyThings.Add(other);
-        Debug.Log(parentDynamicStats.nearbyThings);
+        otherStatulator=other.gameObject.GetComponentInParent<Statulator>();
+        otherBehavioural=other.gameObject.GetComponentInParent<Behavioural>();
+        otherDynamicStats=other.gameObject.GetComponentInParent<DynamicStats>();
+    //    otherBestiary=gameObject.GetComponentInParent<Bestiary>();
+        if (otherStatulator.sizeModifier >= parentStatulator.sizeModifier+1.0f)
+        {
+            // Is scared.
+            parentBehavioural.inFear=true;
+            
+        }
+Debug.Log(otherStatulator.sizeModifier+" - "+parentStatulator.sizeModifier);
+        Debug.Log(otherStatulator.sizeModifier >= parentStatulator.sizeModifier+1.0f);//.transform.parent.name +" Entered Aura of "+parentBehavioural.name);
+     //   parentBehavioural.otherNear=true;
+     //   parentBehavioural.nearbyThings.Add(other);
+      //  Debug.Log(parentBehavioural.nearbyThings);
     }
 
 
