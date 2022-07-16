@@ -15,13 +15,13 @@ public class Bestiary : ScriptableObject
     //Defaults -1 which will randomize at start if Prefab details are not chosen.
     //stats
         [Tooltip("Used for basic intimidation."+
-            " 1:Tiny,5:Huge")]                          [Range(1,5)]            public int size=-1;
+            " 1:Tiny,5:Huge")]                          [Range(1,5)]            public int size_bestiary=-1;
         [Tooltip("Sustained walk in straight line")]    [Range(0,100)]          public float speed=-1f;
         [Tooltip("How many degrees per second turning"+
          "speed. Also used for dodge.")]                [Range(0,100)]          public float agility=-1f;
         [Tooltip("Max Health.")]                        [Range(0,100)]          public int health=-1;
-        [Tooltip("Attack power without mod/weapons.")]  [Range(0,100)]          public float baseAtt=-1f;
-        [Tooltip("Defense power without mod/armour.")]  [Range(0,100)]          public float baseDef=-1f;
+//        [Tooltip("Attack power without mod/weapons.")]  [Range(0,100)]          public float baseAtt=-1f;
+//        [Tooltip("Defense power without mod/armour.")]  [Range(0,100)]          public float baseDef=-1f;
         [Tooltip("How far can it see?")]                [Range(1f,20f)]         public float viewDist=-1f;
         [Tooltip("View range from 12 o'clock."+
             "0=Blind, 180=360`")]                       [Range(10f,180f)]       public float viewRange=-1f;
@@ -49,5 +49,9 @@ public class Bestiary : ScriptableObject
         public bool intelligent=false;
 
 
+
+}
+public class Bestiary2 : MonoBehaviour
+{
 
 }
